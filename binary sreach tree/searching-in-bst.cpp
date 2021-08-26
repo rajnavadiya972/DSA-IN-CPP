@@ -34,6 +34,26 @@ struct node *search(node *root, int key)
     }
 }
 
+struct node *searchIter(node *root, int key)
+{
+    while (root != NULL)
+    {
+        if (root->data == key)
+        {
+            return root;
+        }
+        else if (root->data > key)
+        {
+            root = root->left;
+        }
+        else
+        {
+            root = root->right;
+        }
+    }
+    return NULL;
+}
+
 struct node *createNode(int data)
 {
     struct node *n; //creating a node pointer
@@ -66,6 +86,8 @@ int main()
 
     struct node *ans;
     ans = search(p, 45);
+    cout << (ans == NULL ? 0 : ans->data) << endl;
+    ans = searchIter(p, 4);
     cout << (ans == NULL ? 0 : ans->data) << endl;
     return 0;
 }
